@@ -10,12 +10,7 @@ import com.wordpress.giuliohome.testviewmodel.data.WordRepository
 import com.wordpress.giuliohome.testviewmodel.data.WordDao
 
 
-
-
-
-
-
-public class TweetViewModel(@NonNull application: Application) : ViewModel() {
+class TweetViewModel(@NonNull application: Application) : ViewModel() {
 
     private val mRepository: WordRepository
 
@@ -33,5 +28,9 @@ public class TweetViewModel(@NonNull application: Application) : ViewModel() {
 
     fun insert(word: Word) {
         mRepository.insert(word)
+    }
+
+    fun clear() {
+        mRepository.clear()
     }
 }

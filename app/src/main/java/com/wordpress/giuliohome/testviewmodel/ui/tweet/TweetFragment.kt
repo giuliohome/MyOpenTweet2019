@@ -41,9 +41,9 @@ class TweetFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val recyclerView = getView()!!.findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = WordListAdapter(this!!.context!!)
+        val adapter = WordListAdapter(this.context!!)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this!!.context!!)
+        recyclerView.layoutManager = LinearLayoutManager(this.context!!)
 
         val app = getActivity()!!.getApplication()
 
@@ -63,8 +63,14 @@ class TweetFragment : Fragment() {
         var counter = 0
         val monitor = object : TimerTask() {
             override fun run() {
-                viewModel.insert(Word("ciao..." + counter))
-                counter += 1
+                if (counter >= 10) {
+                    viewModel.clear()
+                    counter = 0
+                    timer.cancel()
+                } else {
+                    viewModel.insert(Word("ciao..." + counter))
+                    counter += 1
+                }
             }
         }
 

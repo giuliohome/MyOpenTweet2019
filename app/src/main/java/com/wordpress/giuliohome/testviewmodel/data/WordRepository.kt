@@ -11,7 +11,7 @@ class WordRepository internal constructor(application: Application) {
     private var mAllWords: LiveData<List<Word>>? = null
 
     fun getAllWords(): LiveData<List<Word>> {
-        return this!!.mAllWords!!
+        return this.mAllWords!!
     }
 
     init {
@@ -25,6 +25,13 @@ class WordRepository internal constructor(application: Application) {
         val check = mWordDao
         if (check != null) {
             insertAsyncTask(check).execute(word)
+        }
+    }
+
+    fun clear() {
+        val check = mWordDao
+        if (check != null) {
+            check.deleteAll()
         }
     }
 
